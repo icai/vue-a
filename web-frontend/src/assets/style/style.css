@@ -1,0 +1,83 @@
+.line_bottom{
+    border-bottom:1px solid #eee;
+}
+.line_margin_top{
+    margin-top:20px
+}
+.float_right{
+    float:right
+}
+.invest_main_info{
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 16px;
+    font-weight:bold;
+}
+.invest_auxiliary{
+    font-size: 12px;
+    color: gray;
+}
+
+.invest_main_info_top{
+    margin-top: 40px
+}
+.invest_el_form_margin_button{
+    margin-bottom: 0px;
+}
+
+.el-table .selected {
+    background: #c9e5f5;
+}
+
+/*
+router-enter：进入过渡的开始状态，元素被插入时生效，只应用一帧后立即删除；
+router-enter-active：进入过渡的结束状态，元素被插入时就生效，在过渡过程完成之后移除；
+router-leave：离开过渡的开始状态，元素被删除时触发，只应用一帧后立即删除；
+router-leave-active：离开过渡的结束状态，元素被删除时生效，离开过渡完成之后被删除；
+*/
+.router-enter-active, .router-leave-active {
+    transition: all .3s ease;
+    transform: translate(100%,1);
+    transform-origin: left;
+}
+.router-enter-active{
+    transform-origin: right;
+    transition-delay: 0.3s;
+}
+.router-enter, .router-leave-active {
+    transform: scale(0,1);
+}
+
+.login-enter-active, .loginrouter-leave-active {
+    transition: all .9s ease;
+}
+.login-enter, .login-leave-active {
+    transform: scale(-1,1);
+}
+.search{
+    float: right
+}
+
+.search>.el-input>input{
+    border-radius: 30px;
+}
+
+.warning{
+    background-color: #F7BA2A;
+}
+
+.danger{
+    background-color: #FF4949;
+}
+
+.text-warning{
+    color: #F7BA2A;
+}
+
+.text-danger{
+    color: #FF4949;
+}
+
+.space{
+    white-space : nowrap
+}
+
