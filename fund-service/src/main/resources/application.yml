@@ -1,0 +1,60 @@
+app:
+  version: "%%VERSION%%"
+  
+server:
+  port: 10010
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registryFetchIntervalSeconds: 5
+    instanceInfoReplicationIntervalSeconds: 5
+    initialInstanceInfoReplicationIntervalSeconds: 5
+
+management:
+  security:
+    enabled: false
+    
+kafka:
+  stream:
+    appid: fund-service-kafka-stream
+  broker:
+    host: localhost:9092
+  zookeeper:
+    host: localhost:2181
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/funddb?characterEncoding=utf-8
+    username: mariadb
+    password: mariadb
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:10100/eureka/
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mysql://mariadb:3306/funddb?characterEncoding=utf-8
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discoery-service:10100/eureka/

@@ -1,0 +1,96 @@
+app:
+  version: "%%VERSION%%"
+  
+server:
+  port: 8088
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    funds:
+      path: /funds/**
+      stripPrefix: false
+      service-id: fund-service
+    fund-accounts:
+      path: /fund-accounts/**
+      stripPrefix: false
+      service-id: fund-service
+    portfolios:
+      path: /portfolios/**
+      stripPrefix: false
+      service-id: fund-service
+    external-capital-accounts:
+      path: /external-capital-accounts/**
+      stripPrefix: false
+      service-id: fund-service
+    eca-cash-pools:
+      path: /eca-cash-pools/**
+      stripPrefix: false
+      service-id: inventory-service
+    fa-capital-pools:
+      path: /fa-capital-pools/**
+      stripPrefix: false
+      service-id: inventory-service
+    capital-details:
+      path: /capital-details/**
+      stripPrefix: false
+      service-id: inventory-service
+    instructions:
+      path: /instructions/**
+      stripPrefix: false
+      service-id: invest-service
+    instruction-baskets:
+      path: /instruction-baskets/**
+      stripPrefix: false
+      service-id: invest-service
+    entrusts:
+      path: /entrusts/**
+      stripPrefix: false
+      service-id: trade-service
+      
+   
+ 
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registryFetchIntervalSeconds: 5
+    instanceInfoReplicationIntervalSeconds: 5
+    initialInstanceInfoReplicationIntervalSeconds: 5
+
+---
+
+spring:
+  profiles: dev
+  kafka:
+    consumer:
+      group-id: "test"
+    bootstrap-servers: localhost:9092
+      
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.31.59.81:10100/eureka/
+
+---
+
+spring:
+  profiles: prod
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discoery-service:10100/eureka/
